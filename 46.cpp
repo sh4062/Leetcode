@@ -1,29 +1,29 @@
-class Solution {
-public:
-    void r(vector<int>& nums,int index,vector<vector<int>> &res){
-        if(index ==nums.size()){
+class Solution
+{
+  private:
+    vector<vector<int>> res;
+
+  public:
+    void permute1(vector<int> &nums, int s)
+    {
+        if (s == nums.size())
+        {
             res.push_back(nums);
             return;
         }
-        else{
-            for(int i = index;i<nums.size();i++){
-                swap(nums[i],nums[index]);
-                r(nums,index+1,res);
-                swap(nums[i],nums[index]);
+        else
+        {
+            for (int i = s; i < nums.size(); i++)
+            {
+                swap(nums[s], nums[i]);
+                permute1(nums, s + 1);
+                swap(nums[s], nums[i]);
             }
         }
-        
-        
-        
     }
-    vector<vector<int>> permute(vector<int>& nums) {
-        vector<vector<int>> res;
-        if(nums.size()==0) return res;
-       
-        r(nums,0,res);
+    vector<vector<int>> permute(vector<int> &nums)
+    {
+        permute1(nums, 0);
         return res;
-        
-        
-        
     }
 };
