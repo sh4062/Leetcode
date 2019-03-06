@@ -16,7 +16,11 @@ class Solution
         j = 0;
         while (i < ls || j < lp)
         {
+<<<<<<< HEAD
             if (j + 1 < lp && p[j + 1] == '*')//'*' Matches zero or more of the preceding element.
+=======
+            if (j + 1 < lp && p[j + 1] == '*')
+>>>>>>> ffe8f478c04982f1fb5b253c1a06e229f249019a
             {
                 // Star match
                 sc.push(p[j]);
@@ -24,8 +28,12 @@ class Solution
                 j += 2;
                 sj.push(j);
             }
+<<<<<<< HEAD
             else if (j < lp && (p[j] == '.' || s[i] == p[j]))//'.' Matches any single character.
 
+=======
+            else if (j < lp && (p[j] == '.' || s[i] == p[j]))
+>>>>>>> ffe8f478c04982f1fb5b253c1a06e229f249019a
             {
                 // Single match
                 ++i;
