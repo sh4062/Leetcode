@@ -81,7 +81,7 @@ class Solution
 // P[i][j] = P[i][j - 2], if p[j - 1] == '*' and the pattern repeats for 0 times;
 // P[i][j] = P[i - 1][j] && (s[i - 1] == p[j - 2] || p[j - 2] == '.'), if p[j - 1] == '*' and the pattern repeats for at least 1 times.
 // Putting these together, we will have the following code.
-
+//这题不会啊
 class Solution {
 public:
     bool isMatch(string s, string p) {
