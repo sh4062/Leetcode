@@ -1,0 +1,61 @@
+class Solution {
+public:
+    vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {
+        int m = heights.size();
+        int n = heights[0].size();
+        vector<vector<int>>res;
+        queue<pair<int,int>>q1;
+        queue<pair<int,int>>q2;
+        vector<vector<int>>vis1(m,vector<int>(n,0));
+        vector<vector<int>>vis2(m,vector<int>(n,0));
+        for(int i = 0;i<m;i++){
+            vis1[i][0]=1;
+            q1.push({i,0});
+            vis2[i][n-1]=1;
+            q2.push({i,n-1});
+        }
+        for(int i = 0;i<n;i++){
+            vis1[0][i]=1;
+            q1.push({0,i});
+            vis2[m-1][i]=1;
+            q2.push({m-1,i});
+        }
+        int dirx[4]={0,0,1,-1};
+        int diry[4]={1,-1,0,0};
+        while(!q1.empty()){
+            auto tmp = q1.front();
+            q1.pop();
+            for(int k =0;k<4;k++){
+                int xx=tmp.first+dirx[k];
+                int yy=tmp.second+diry[k];
+                if(xx>=0&&xx<m&&yy>=0&&yy<n&&vis1[xx][yy]==0&&heights[xx][yy]>=heights[tmp.first][tmp.second]){
+                    vis1[xx][yy]=1;
+                    q1.push({xx,yy});
+                }
+            }
+
+        }
+        while(!q2.empty()){
+            auto tmp = q2.front();
+            q2.pop();
+            for(int k =0;k<4;k++){
+                int xx=tmp.first+dirx[k];
+                int yy=tmp.second+diry[k];
+                if(xx>=0&&xx<m&&yy>=0&&yy<n&&vis2[xx][yy]==0&&heights[xx][yy]>=heights[tmp.first][tmp.second]){
+                    vis2[xx][yy]=1;
+                    q2.push({xx,yy});
+                }
+            }
+
+        }
+        for(int i = 0;i<m;i++){
+            for(int j = 0;j<n;j++){
+                if(vis1[i][j]&&vis2[i][j]){
+                    res.push_back({i,j});
+                }
+            }
+        }
+        return res;
+
+    }
+};
